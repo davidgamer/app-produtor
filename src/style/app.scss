@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+td,
+button {
+    cursor: pointer;
+}
+
+.navbar-brand {
+    max-width: 5rem;
+}
+
+.slide-fade-enter-active {
+    transition: all .3s ease;
+}
+
+.slide-fade-leave-active {
+    transition: all .5s ease-out;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+    transform: translateX(10px);
+    opacity: 0;
+}
+
+.title {
+    padding: 2rem;
+}

@@ -5,8 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    produtores: [],
-    newprodutor: ""
+    produtores: []
   },
   mutations: {
     setProdutores(state, produtores) {
@@ -15,15 +14,9 @@ export default new Vuex.Store({
     injectProdutor(state, produtor) {
       state.produtores.push(produtor);
     },
-    updateProdutor(state, produtor) {
-      var todos = state.produtor;
-      todos.splice(produtor.indexOf(produtor), 1);
-      state.produtor = produtor;
-      state.newprodutor = produtor;
-    },
-    removeProdutor(state, produtor) {
-      var todos = state.todos;
-      todos.splice(todos.indexOf(todo), 1);
+    removeProdutor(state, payload) {
+      const index = state.produtores.findIndex(p => p.id === payload);
+      state.produtores.splice(index, 1);
     }
   },
   getters: {
@@ -55,6 +48,40 @@ export default new Vuex.Store({
         .then(res => res.json())
         .then(res => {
           context.commit("injectProdutor", res);
+        });
+    },
+    updateProdutor(context, data) {
+      this.displayData = JSON.stringify(data);
+      let h = new Headers();
+      h.append("Content-Type", "application/json");
+      let url =
+        "https://my-json-server.typicode.com/pedroskakum/fake-api/grower/" +
+        data.id;
+      let fetchData = {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: h
+      };
+      fetch(url, fetchData)
+        .then(res => res.json())
+        .then(res => {
+          context.commit("removeProdutor", data.id);
+          context.commit("injectProdutor", res);
+        });
+    },
+    deleteProdutor(context, id) {
+      let h = new Headers();
+      h.append("Content-Type", "application/json");
+      let url =
+        "https://my-json-server.typicode.com/pedroskakum/fake-api/grower/" + id;
+      let fetchData = {
+        method: "DELETE",
+        headers: h
+      };
+      fetch(url, fetchData)
+        .then(res => res.json())
+        .then(res => {
+          context.commit("removeProdutor", id);
         });
     }
   }

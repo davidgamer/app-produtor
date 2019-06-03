@@ -18,22 +18,9 @@
         </a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <router-link class="nav-link" to="/">Propriedades</router-link>
-          </li>
-          <li class="nav-item active">
-            <router-link class="nav-link" to="/about">Produtores</router-link>
+            <router-link class="nav-link" to="/">Produtores</router-link>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Pesquisa"
-            aria-label="Search"
-            v-model="search"
-          >
-          <button @click.prevent="send(search)" class="btn btn-outline-success my-2 my-sm-0" >Pesquisar</button>
-        </form>
       </div>
     </nav>
     <div class="container-fluid">
@@ -48,11 +35,11 @@ export default {
       search: ""
     };
   },
-methods:{
-  send(search){
-    this.$store.dispatch("fetchProdutores", search);
+  methods: {
+    send(search) {
+      this.$store.dispatch("fetchProdutores", search);
+    }
   }
-}
 };
 </script>
 
@@ -72,7 +59,7 @@ methods:{
 
   a {
     font-weight: bold;
-    color: #6b9cce;
+    color: #42b98377;
     &.router-link-exact-active {
       color: #42b98377;
     }

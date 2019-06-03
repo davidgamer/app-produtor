@@ -53,7 +53,7 @@ export default {
       this.$emit("cancelEdit", false);
     },
     editCliente(data) {
-      this.$store.dispatch("updateProdutores", data);
+      this.$store.dispatch("updateProdutor", data);
     }
   }
 };

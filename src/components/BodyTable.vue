@@ -7,7 +7,7 @@
         <button @click="enableEdit(pr)" class="btn btn-outline-warning">Editar</button>
       </td>
       <td>
-        <button class="btn btn-outline-danger">Deletar</button>
+        <button @click="excluir(pr.id)" class="btn btn-outline-danger">Deletar</button>
       </td>
     </tr>
   </tbody>
@@ -25,6 +25,9 @@ export default {
     enableEdit(pr) {
       this.$emit("enableEdit", true);
       this.$emit("toEdit", pr);
+    },
+    excluir(id) {
+      this.$store.dispatch("deleteProdutor", id);
     }
   }
 };

@@ -1,9 +1,14 @@
 <template>
   <tbody>
-    <tr @click="criou(pr.name)" v-for="pr in bodyTdata" :key="pr.id">
-      <th scope="row">{{ pr.id }}</th>
+    <tr v-for="pr in bodyTdata" :key="pr.id">
       <td>{{ pr.name }}</td>
       <td>{{ pr.cpf }}</td>
+      <td>
+        <button @click="enableEdit(pr)" class="btn btn-outline-warning">Editar</button>
+      </td>
+      <td>
+        <button class="btn btn-outline-danger">Deletar</button>
+      </td>
     </tr>
   </tbody>
 </template>
@@ -16,10 +21,10 @@ export default {
       required: true
     }
   },
-
   methods: {
-    criou(nome) {
-      alert("Você clicou em " + nome);
+    enableEdit(pr) {
+      this.$emit("enableEdit", true);
+      this.$emit("toEdit", pr);
     }
   }
 };

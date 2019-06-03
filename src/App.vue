@@ -28,10 +28,11 @@
           <input
             class="form-control mr-sm-2"
             type="search"
-            placeholder="Search"
+            placeholder="Pesquisa"
             aria-label="Search"
+            v-model="search"
           >
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+          <button @click.prevent="send(search)" class="btn btn-outline-success my-2 my-sm-0" >Pesquisar</button>
         </form>
       </div>
     </nav>
@@ -40,10 +41,21 @@
     </div>
   </div>
 </template>
-<script lang="ts">
-import Vue from "vue";
-export default Vue.extend({});
+<script>
+export default {
+  data() {
+    return {
+      search: ""
+    };
+  },
+methods:{
+  send(search){
+    this.$store.dispatch("fetchProdutores", search);
+  }
+}
+};
 </script>
+
 
 <style lang="scss">
 #app {

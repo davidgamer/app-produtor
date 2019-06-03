@@ -2,12 +2,12 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="card m-3">
-        <h5 class="h5">Novo Produtor</h5>
+        <h5 class="h5">Editar Produtor {{produtor.id}}</h5>
         <form class="form p-5">
           <div class="form-group">
             <label for="cpfinput">CPF:</label>
             <input
-              v-model="novoProdutor.cpf"
+              v-model="produtor.cpf"
               type="text"
               class="form-control"
               name="cpf"
@@ -19,7 +19,7 @@
           <div class="form-group">
             <label for="nameinput">Nome:</label>
             <input
-              v-model="novoProdutor.name"
+              v-model="produtor.name"
               type="text"
               class="form-control"
               id="name"
@@ -30,10 +30,10 @@
           <div class="form-group justify-content-around">
             <button
               type="button"
-              @click="storeCliente(novoProdutor)"
+              @click="editCliente(produtor)"
               class="btn btn-outline-success"
             >Salvar</button>
-            <button @click="cancelNew()" type="button" class="btn btn-outline-danger">Cancelar</button>
+            <button @click="cancelEdit()" type="button" class="btn btn-outline-danger">Cancelar</button>
           </div>
         </form>
       </div>
@@ -43,25 +43,17 @@
 <script>
 export default {
   props: {
-    lastID: {
-      type: Number,
-      required: true
-    }
+    produtor: {}
   },
   data() {
-    return {
-      novoProdutor: {
-        name: "",
-        cpf: 0
-      }
-    };
+    return {};
   },
   methods: {
-    cancelNew() {
-      this.$emit("cancelNew", false);
+    cancelEdit() {
+      this.$emit("cancelEdit", false);
     },
-    storeCliente(data) {
-      this.$store.dispatch("insertProdutores", data);
+    editCliente(data) {
+      this.$store.dispatch("updateProdutores", data);
     }
   }
 };
